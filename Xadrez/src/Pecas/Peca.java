@@ -1,16 +1,16 @@
-package Peca;
+package Pecas;
 
 public abstract class Peca {
-    protected boolean corBranca; // true se a peça for branca, false se for preta
+    protected boolean Branca; // true se a peça for branca, false se for preta
     protected boolean capturada; // true se a peça foi capturada
 
-    public Peca(boolean corBranca) {
-        this.corBranca = corBranca;
+    public Peca(boolean Branca) {
+        this.Branca = Branca;
         this.capturada = false;
     }
 
-    public boolean CorBranca() {
-        return corBranca;
+    public boolean isBranca() {
+        return Branca;
     }
 
     public boolean Capturada() {
