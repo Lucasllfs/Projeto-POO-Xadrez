@@ -1,0 +1,30 @@
+package Pecas;
+
+public class Cavalo extends Peca {
+
+    public Cavalo(boolean Branca) {
+        super(Branca);
+    }
+
+    @Override
+    public String desenho() {
+        return isBranca() ? "C" : "c"; // Usando o método isBranca()
+    }
+
+    @Override
+    public boolean movimentoValido(int linhaOrigem, int colunaOrigem, int linhaDestino, int colunaDestino) {
+        int diferencaLinha = Math.abs(linhaDestino - linhaOrigem);
+        int diferencaColuna = Math.abs(colunaDestino - colunaOrigem);
+
+        // cavalo se move em forma de L
+        return (diferencaLinha == 2 && diferencaColuna == 1) || (diferencaLinha == 1 && diferencaColuna == 2);
+    }
+
+    @Override
+    public String caminho(int linhaOrigem, int colunaOrigem, int linhaDestino, int colunaDestino) {
+        if (movimentoValido(linhaOrigem, colunaOrigem, linhaDestino, colunaDestino)) {
+            return linhaOrigem + "" + colunaOrigem + linhaDestino + "" + colunaDestino; // n tem caminho intermediario para o aavalo
+        }
+        return "";
+    }
+}
