@@ -27,8 +27,8 @@ public class Bispo extends Peca {
             int incrementoLinha = Integer.compare(linhaDestino, linhaOrigem);
             int incrementoColuna = Integer.compare(colunaDestino, colunaOrigem);
 
-            int linhaAtual = linhaOrigem + incrementoLinha;
-            int colunaAtual = colunaOrigem + incrementoColuna;
+            int linhaAtual = linhaOrigem;
+            int colunaAtual = colunaOrigem;
 
             while (linhaAtual != linhaDestino && colunaAtual != colunaDestino) {
                 caminho.append(linhaAtual).append(colunaAtual);
