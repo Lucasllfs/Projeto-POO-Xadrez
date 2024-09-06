@@ -11,21 +11,21 @@ public class Torre extends Peca {
         return isBranca() ? "T" : "t";
     }
 
-    @Override
-    public boolean movimentoValido(int linhaOrigem, int colunaOrigem, int linhaDestino, int colunaDestino) {
+     @Override
+    public boolean movimentoValido(int linhaOrigem, char colunaOrigem, int linhaDestino, char colunaDestino) {
         // A Torre se move na horizontal ou vertical
         return linhaOrigem == linhaDestino || colunaOrigem == colunaDestino;
     }
 
     @Override
-    public String caminho(int linhaOrigem, int colunaOrigem, int linhaDestino, int colunaDestino) {
+    public String caminho(int linhaOrigem, char colunaOrigem, int linhaDestino, char colunaDestino) {
         if (movimentoValido(linhaOrigem, colunaOrigem, linhaDestino, colunaDestino)) {
             StringBuilder caminho = new StringBuilder();
             int incrementoLinha = linhaOrigem == linhaDestino ? 0 : Integer.compare(linhaDestino, linhaOrigem);//em t
             int incrementoColuna = colunaOrigem == colunaDestino ? 0 : Integer.compare(colunaDestino, colunaOrigem);
 
-            int linhaAtual = linhaOrigem + incrementoLinha;
-            int colunaAtual = colunaOrigem + incrementoColuna;
+            int linhaAtual = linhaOrigem;
+            char colunaAtual = colunaOrigem;
 
             while (linhaAtual != linhaDestino || colunaAtual != colunaDestino) {
                 caminho.append(linhaAtual).append(colunaAtual);
