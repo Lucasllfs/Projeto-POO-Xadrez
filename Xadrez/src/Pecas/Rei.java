@@ -12,7 +12,7 @@ public class Rei extends Peca {
     }
 
     @Override
-    public boolean movimentoValido(int linhaOrigem, int colunaOrigem, int linhaDestino, int colunaDestino) {
+    public boolean movimentoValido(int linhaOrigem, char colunaOrigem, int linhaDestino, char colunaDestino) {
         int diferencaLinha = Math.abs(linhaDestino - linhaOrigem);
         int diferencaColuna = Math.abs(colunaDestino - colunaOrigem);// Armzena valor absoluto
 
@@ -21,7 +21,7 @@ public class Rei extends Peca {
     }
 
     @Override
-    public String caminho(int linhaOrigem, int colunaOrigem, int linhaDestino, int colunaDestino) {
+    public String caminho(int linhaOrigem, char colunaOrigem, int linhaDestino, char colunaDestino) {
         if (movimentoValido(linhaOrigem, colunaOrigem, linhaDestino, colunaDestino)) {
             return linhaOrigem + "" + colunaOrigem + linhaDestino + "" + colunaDestino; // Apenas a origem e o destino, sem caminho intermediário
         }
