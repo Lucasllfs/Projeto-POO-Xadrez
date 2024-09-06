@@ -133,6 +133,7 @@ public class Main {
         //TESTE TABULEIRO
         System.out.println("\nTestando Tabuleiro...");
         Tabuleiro tabuleiro = new Tabuleiro();
+        System.out.println("Testes para desenho:");
         System.out.println(tabuleiro.desenho());
         // Testes para o método noLimite
         System.out.println("Testes para noLimite:");
