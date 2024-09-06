@@ -12,7 +12,7 @@ public class Peao extends Peca {
     }
 
     @Override
-    public boolean movimentoValido(int linhaOrigem, int colunaOrigem, int linhaDestino, int colunaDestino) {
+    public boolean movimentoValido(int linhaOrigem, char colunaOrigem, int linhaDestino, char colunaDestino) {
         int direcao = isBranca() ? 1 : -1; // Brancos movem-se para cima (linha+1), Pretos para baixo (linha-1)
 
         if (colunaOrigem == colunaDestino) {
@@ -30,7 +30,7 @@ public class Peao extends Peca {
     }
 
     @Override
-    public String caminho(int linhaOrigem, int colunaOrigem, int linhaDestino, int colunaDestino) {
+    public String caminho(int linhaOrigem, char colunaOrigem, int linhaDestino, char colunaDestino) {
         if (movimentoValido(linhaOrigem, colunaOrigem, linhaDestino, colunaDestino)) {
             return linhaOrigem + "" + colunaOrigem + linhaDestino + "" + colunaDestino; // Peão não possui caminho intermediário
         }
