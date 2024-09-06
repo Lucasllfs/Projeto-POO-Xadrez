@@ -16,14 +16,14 @@ public class Peao extends Peca {
         int direcao = isBranca() ? 1 : -1; // Brancos movem-se para cima (linha+1), Pretos para baixo (linha-1)
 
         if (colunaOrigem == colunaDestino) {
-            // Movimento simples
+            // Movimento simples de uma casa
             if (linhaDestino - linhaOrigem == direcao) {
                 return true;
             }
-            // Primeiro movimento do Peão
-            if ((linhaOrigem == 1 && isBranca()) || (linhaOrigem == 6 && !isBranca())) {
+            // Primeiro movimento do Peão, movendo duas casas
+            if ((linhaOrigem == 2 && isBranca()) || (linhaOrigem == 7 && !isBranca())) {
                 return linhaDestino - linhaOrigem == 2 * direcao;
-            }//as peças brancas começam na linha 1 e as pretas na linha 6.
+            } // Brancas começam na linha 2, pretas na linha 7
         }
         // Captura na diagonal
         return Math.abs(colunaDestino - colunaOrigem) == 1 && linhaDestino - linhaOrigem == direcao;
@@ -32,7 +32,13 @@ public class Peao extends Peca {
     @Override
     public String caminho(int linhaOrigem, char colunaOrigem, int linhaDestino, char colunaDestino) {
         if (movimentoValido(linhaOrigem, colunaOrigem, linhaDestino, colunaDestino)) {
-            return linhaOrigem + "" + colunaOrigem + linhaDestino + "" + colunaDestino; // Peão não possui caminho intermediário
+            // Se o peão avançar duas casas, inclui a casa intermediária no caminho
+            if (Math.abs(linhaDestino - linhaOrigem) == 2) {
+                int linhaIntermediaria = linhaOrigem + (isBranca() ? 1 : -1); // Casa intermediária entre origem e destino
+                return linhaOrigem + "" + colunaOrigem + linhaIntermediaria + "" + colunaOrigem + linhaDestino + "" + colunaDestino;
+            }
+            // Movimento de uma casa ou captura
+            return linhaOrigem + "" + colunaOrigem + linhaDestino + "" + colunaDestino;
         }
         return "";
     }
