@@ -12,7 +12,7 @@ public class Dama extends Peca {
     }
 
     @Override
-    public boolean movimentoValido(int linhaOrigem, int colunaOrigem, int linhaDestino, int colunaDestino) {
+    public boolean movimentoValido(int linhaOrigem, char colunaOrigem, int linhaDestino, char colunaDestino) {
         int diferencaLinha = Math.abs(linhaDestino - linhaOrigem);
         int diferencaColuna = Math.abs(colunaDestino - colunaOrigem);
 
@@ -21,7 +21,7 @@ public class Dama extends Peca {
     }
 
     @Override
-    public String caminho(int linhaOrigem, int colunaOrigem, int linhaDestino, int colunaDestino) {
+    public String caminho(int linhaOrigem, char colunaOrigem, int linhaDestino, char colunaDestino) {
 //        retorna o caminho que a Dama percorreria, casa por casa, do ponto de origem ao ponto de destino.
 //        Usa incrementos para linha e coluna baseados na direcao do movimento e constroi uma string com todas
 //        as posicoes intermediarias.
@@ -33,7 +33,7 @@ public class Dama extends Peca {
             int incrementoColuna = Integer.compare(colunaDestino, colunaOrigem);
 
             int linhaAtual = linhaOrigem;
-            int colunaAtual = colunaOrigem;
+            char colunaAtual = colunaOrigem;
 
             while (linhaAtual != linhaDestino || colunaAtual != colunaDestino) {
                 caminho.append(linhaAtual).append(colunaAtual);//add o valor da var colunaAtual ao StringBuilder caminho imediatamente após linhaAtual.
