@@ -1,10 +1,93 @@
 import java.sql.SQLOutput;
+import java.io.*;
+import java.util.Scanner;
+
+import Pecas.Peca;
+import Pecas.Bispo;
+import Pecas.Cavalo;
+import Pecas.Dama;
+import Pecas.Peao;
+import Pecas.Rei;
+import Pecas.Torre;
+
 
 //main nao implementada
 //vai estar dentro do gerenciador
-public class Main {
+public class Gerenciador {
+    private Jogo jogo;
+    private Scanner scanner;
+
+    public Gerenciador() {
+        this.jogo = new Jogo();
+        this.scanner = new Scanner(System.in);
+    }
+
     public static void main(String[] args) {
-        testes();
+        //Intecalar os comentarios para testar o executar ;)
+        Gerenciador gerenciador = new Gerenciador();
+        gerenciador.menuPrincipal();
+
+        //testes();
+    }
+
+    public void menuPrincipal() {
+        System.out.println("Bem-vindo ao jogo de tabuleiro!");
+        System.out.println("1. Iniciar novo jogo");
+        System.out.println("2. Carregar jogo");
+        System.out.println("3. Sair");
+
+        int opcao = scanner.nextInt();
+        scanner.nextLine(); // Consumir nova linha
+
+        switch (opcao) {
+            case 1:
+                iniciarNovoJogo();
+                break;
+            case 2:
+                carregarJogo();
+                break;
+            case 3:
+                System.out.println("Saindo...");
+                break;
+            default:
+                System.out.println("Opção inválida.");
+        }
+    }
+
+    private void iniciarNovoJogo() {
+        jogo.iniciarJogo();
+        salvarJogo();
+    }
+
+    private void carregarJogo() {
+        System.out.println("Digite o nome do arquivo para carregar o jogo:");
+        String nomeArquivo = scanner.nextLine();
+
+        try (BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo))) {
+            String nomeJogador1 = leitor.readLine();
+            String nomeJogador2 = leitor.readLine();
+            jogo = new Jogo();  // Reinicializa o jogo
+            String jogada;
+            while ((jogada = leitor.readLine()) != null) {
+                //processar jogada n deveria ser private??
+                jogo.processarJogada(jogada);
+            }
+            jogo.iniciarJogo();
+        } catch (IOException e) {
+            System.out.println("Erro ao carregar o arquivo: " + e.getMessage());
+        }
+    }
+
+    private void salvarJogo() {
+        System.out.println("Digite o nome do arquivo para salvar o jogo:");
+        String nomeArquivo = scanner.nextLine();
+
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter(nomeArquivo))) {
+            escritor.write(jogo.registroJogo());
+            System.out.println("Jogo salvo com sucesso.");
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar o jogo: " + e.getMessage());
+        }
     }
 
     private static void testes() {
