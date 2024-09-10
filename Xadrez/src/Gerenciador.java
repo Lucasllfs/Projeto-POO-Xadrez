@@ -62,21 +62,37 @@ public class Gerenciador {
     private void carregarJogo() {
         System.out.println("Digite o nome do arquivo para carregar o jogo:");
         String nomeArquivo = scanner.nextLine();
-
+    
         try (BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo))) {
+            // Leitura dos nomes dos jogadores
             String nomeJogador1 = leitor.readLine();
             String nomeJogador2 = leitor.readLine();
-            jogo = new Jogo();  // Reinicializa o jogo
+
+            System.out.println("nomeJogador1: " + nomeJogador1);
+            System.out.println("nomeJogador2: " + nomeJogador2);
+    
+            // Inicializa o jogo e recria os jogadores com suas peças
+            jogo = new Jogo();
+            jogo.jogador1 = new Jogador(nomeJogador1, jogo.inicializarPecas(true));  // Peças brancas
+            jogo.jogador2 = new Jogador(nomeJogador2, jogo.inicializarPecas(false));  // Peças pretas
+            jogo.jogadorAtual = jogo.jogador1;  // Supondo que o jogador 1 começa
+    
+            // Processa as jogadas do arquivo
             String jogada;
             while ((jogada = leitor.readLine()) != null) {
-                //processar jogada n deveria ser private??
+                System.out.println("Jogada: " + jogada);
                 jogo.processarJogada(jogada);
+                jogo.alternarJogador();
             }
-            jogo.iniciarJogo();
+    
+            // Inicia o jogo após o carregamento
+            jogo.iniciarJogoArmazenado();
         } catch (IOException e) {
             System.out.println("Erro ao carregar o arquivo: " + e.getMessage());
         }
     }
+    
+    
 
     private void salvarJogo() {
         System.out.println("Digite o nome do arquivo para salvar o jogo:");

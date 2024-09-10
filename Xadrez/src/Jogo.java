@@ -14,9 +14,9 @@ import Pecas.Rei;
 
 public class Jogo {
     private Tabuleiro tabuleiro;
-    private Jogador jogador1;
-    private Jogador jogador2;
-    private Jogador jogadorAtual;
+    protected Jogador jogador1;
+    protected Jogador jogador2;
+    protected Jogador jogadorAtual;
     private List<String> historicoJogadas;
     private boolean jogoAtivo;
 
@@ -53,7 +53,27 @@ public class Jogo {
         }
     }
 
-    private List<Peca> inicializarPecas(boolean ehBranca) {
+    public void iniciarJogoArmazenado() {
+    
+
+        // Loop principal do jogo
+        while (jogoAtivo) {
+            mostrarTabuleiro();
+            String jogada = jogadorAtual.informaJogada();
+            if (jogada.equalsIgnoreCase("parar")) {
+                encerrarJogo();
+                break;
+            }
+
+            if (processarJogada(jogada)) {
+                alternarJogador();
+            }
+        }
+    }
+
+
+
+    protected List<Peca> inicializarPecas(boolean ehBranca) {
         // Inicializa as peças do jogador
         List<Peca> pecas = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
@@ -94,6 +114,14 @@ public class Jogo {
             Casa casaDestino = tabuleiro.getCasa(linhaD, colunaD);
             Peca pecaMovida = casaOrigem.getPeca();
 
+            if (casaDestino.estaOcupada()) {
+                Peca pecaCapturada = casaDestino.getPeca();
+                if (pecaCapturada.isBranca() != pecaMovida.isBranca()) {
+                    System.out.println("Peça capturada: " + pecaCapturada);
+                    jogadorAtual.capturarPeca(pecaCapturada);
+                }
+            }
+
             // Atualiza o tabuleiro
             casaDestino.setPeca(pecaMovida);
             casaOrigem.setPeca(null);
@@ -116,7 +144,7 @@ public class Jogo {
         return registro.toString();
     }
 
-    private void alternarJogador() {
+    protected void alternarJogador() {
         jogadorAtual = (jogadorAtual == jogador1) ? jogador2 : jogador1;
     }
 
@@ -141,6 +169,15 @@ public class Jogo {
         System.out.println("Capturadas pelo " + jogador1.getNome() + ": " + jogador1.pecasCapturadas());
         System.out.println("Capturadas pelo " + jogador2.getNome() + ": " + jogador2.pecasCapturadas());
     }
+
+
+    public void setJogadores(Jogador jogador1, Jogador jogador2) {
+        this.jogador1 = jogador1;
+        this.jogador2 = jogador2;
+        this.jogadorAtual = jogador1;  // Começa sempre com o jogador 1, ou pode-se usar alguma lógica para decidir de quem é a vez.
+    }
+
+    
 
     private void encerrarJogo() {
         System.out.println("Jogo encerrado.");

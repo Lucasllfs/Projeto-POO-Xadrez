@@ -35,6 +35,7 @@ public class Jogada {
         if (casaFinal.estaOcupada() && casaFinal.getPeca().isBranca() == jogador.getPecas().get(0).isBranca()) {
             return false;
         }
+       
 
         //como na classe caminho não verifica se eh cavalo *seria mais dificil*, adicionei essa verificação aqui
         //Mas podemos mudar se quiser
