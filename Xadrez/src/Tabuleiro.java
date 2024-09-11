@@ -42,8 +42,8 @@ public class Tabuleiro {
         casas[7]['f' - 'a'].setPeca(new Bispo(false)); // Bispo preto emo f8
 
         //Configurando Rainhas
-        //casas[0]['d' - 'a'].setPeca(new Rainha(true)); // Rainha branca em d1
-        //casas[7]['d' - 'a'].setPeca(new Rainha(false)); // Rainha preta em d8
+        casas[0]['d' - 'a'].setPeca(new Dama(true)); // Rainha branca em d1
+        casas[7]['d' - 'a'].setPeca(new Dama(false)); // Rainha preta em d8
 
         //Configurando Reis
         casas[0]['e' - 'a'].setPeca(new Rei(true)); // Rei branco em e1

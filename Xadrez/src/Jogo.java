@@ -7,8 +7,7 @@ import Pecas.Peao;
 import Pecas.Torre;
 import Pecas.Cavalo;
 import Pecas.Bispo;
-//Adicionar Rainha!!!
-//import Pecas.Rainha;
+import Pecas.Dama;
 import Pecas.Rei;
 
 
@@ -84,8 +83,7 @@ public class Jogo {
             pecas.add(new Torre(ehBranca));
             pecas.add(new Cavalo(ehBranca));
             pecas.add(new Bispo(ehBranca));
-            // Adicionar rainha !!!!
-           // pecas.add(new Rainha(ehBranca));
+            pecas.add(new Dama(ehBranca));
             pecas.add(new Rei(ehBranca));
         }
 
@@ -117,7 +115,7 @@ public class Jogo {
             if (casaDestino.estaOcupada()) {
                 Peca pecaCapturada = casaDestino.getPeca();
                 if (pecaCapturada.isBranca() != pecaMovida.isBranca()) {
-                    System.out.println("Peça capturada: " + pecaCapturada);
+                    //System.out.println("Peça capturada: " + pecaCapturada);
                     jogadorAtual.capturarPeca(pecaCapturada);
                 }
             }
@@ -176,8 +174,6 @@ public class Jogo {
         this.jogador2 = jogador2;
         this.jogadorAtual = jogador1;  // Começa sempre com o jogador 1, ou pode-se usar alguma lógica para decidir de quem é a vez.
     }
-
-    
 
     private void encerrarJogo() {
         System.out.println("Jogo encerrado.");

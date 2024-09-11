@@ -82,6 +82,7 @@ public class Gerenciador {
             while ((jogada = leitor.readLine()) != null) {
                 System.out.println("Jogada: " + jogada);
                 jogo.processarJogada(jogada);
+               
                 jogo.alternarJogador();
             }
     

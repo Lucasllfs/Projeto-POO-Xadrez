@@ -29,6 +29,27 @@ public class Peao extends Peca {
         return Math.abs(colunaDestino - colunaOrigem) == 1 && linhaDestino - linhaOrigem == direcao;
     }
 
+    // public boolean movimentoValido(int linhaOrigem, char colunaOrigem, int linhaDestino, char colunaDestino, boolean casaDestinoestaOcupada) {
+    //     int direcao = isBranca() ? 1 : -1; // Brancos movem-se para cima (linha+1), Pretos para baixo (linha-1)
+
+    //     if (colunaOrigem == colunaDestino && !casaDestinoestaOcupada) {
+    //         // Movimento simples de uma casa
+    //         if (linhaDestino - linhaOrigem == direcao && !casaDestinoestaOcupada) {
+    //             return true;
+    //         } 
+    //         // Primeiro movimento do Peão, movendo duas casas
+    //         if ((linhaOrigem == 2 && isBranca()) || (linhaOrigem == 7 && !isBranca())) {
+    //             return linhaDestino - linhaOrigem == 2 * direcao;
+    //         } // Brancas começam na linha 2, pretas na linha 7
+    //     }
+    //     // Captura na diagonal
+    //     if (casaDestinoestaOcupada) {
+    //         return Math.abs(colunaDestino - colunaOrigem) == 1 && linhaDestino - linhaOrigem == direcao;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
     @Override
     public String caminho(int linhaOrigem, char colunaOrigem, int linhaDestino, char colunaDestino) {
         if (movimentoValido(linhaOrigem, colunaOrigem, linhaDestino, colunaDestino)) {

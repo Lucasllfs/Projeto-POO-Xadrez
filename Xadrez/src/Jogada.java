@@ -1,5 +1,6 @@
 import Pecas.Peca;
 import Pecas.Cavalo;
+import Pecas.Peao;
 
 public class Jogada {
     private Jogador jogador;
@@ -42,8 +43,25 @@ public class Jogada {
         if (!caminho.estaLivre() && !(peca instanceof Cavalo)) {
             return false;
         }
+        if (peca instanceof Peao) {
+            boolean movimentoPeao = peca.movimentoValido(linhaInicial, colunaInicial, linhaFinal, colunaFinal);
+            if (movimentoPeao) {
+                if (colunaFinal != colunaInicial) {
+                    if(casaFinal.estaOcupada()){
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } 
+                return true;
+            } else {
+                return false;
+            }
 
-        return peca.movimentoValido(linhaInicial, colunaInicial, linhaFinal, colunaFinal);
+        } else {
+           
+            return peca.movimentoValido(linhaInicial, colunaInicial, linhaFinal, colunaFinal);
+        }
     }
 
     public boolean ehXeque() {
