@@ -52,8 +52,13 @@ public class Jogada {
                     } else {
                         return false;
                     }
-                } 
-                return true;
+                } else {
+                    if(casaFinal.estaOcupada()) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
             } else {
                 return false;
             }
