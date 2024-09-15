@@ -99,10 +99,7 @@ public class Jogo {
         }
 
         Peca peca = casaOrigem.getPeca();
-        if (!peca.movimentoValido(linhaO, colunaO, linhaD, colunaD)) {
-            return false;
-        }
-
+        
         Jogada jogada = new Jogada(jogadorAtual, peca, linhaO, colunaO, linhaD, colunaD, tabuleiro);
         return jogada.ehValida(tabuleiro);
     }
