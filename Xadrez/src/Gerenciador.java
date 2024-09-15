@@ -1,3 +1,4 @@
+// Trabalho POO - Grupo 8: Anne Mari Suenaga Sakai, Eline Vieira, Gabrielle Caram, Kauê Almeida Gonçalves de Oliveira, Lucas Lima Felix da Silva
 import java.sql.SQLOutput;
 import java.io.*;
 import java.util.Scanner;
