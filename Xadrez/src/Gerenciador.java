@@ -360,10 +360,9 @@ public class Gerenciador {
 
         Caminho caminho17 = new Caminho(t, "");
         Casa casaInicial2 = caminho17.casaInicial();
-        System.out.println("Teste casaInicial (String vazia) - Esperado: , Obtido: " + casaInicial2.getLinha() + casaInicial2.getColuna());
+        System.out.println("Teste casaInicial (String vazia) - Esperado: null , Obtido: " + casaInicial2);
         Casa casaFinal2 = caminho17.casaFinal();
-        System.out.println("Teste casaFinal (String vazia) - Esperado: , Obtido: " + casaFinal2.getLinha() + casaFinal2.getColuna());
-      
+        System.out.println("Teste casaFinal (String vazia) - Esperado: , Obtido: " + casaFinal2);
     }
     
     
