@@ -38,12 +38,10 @@ public class Jogada {
             return false;
         }
        
-
-        //como na classe caminho não verifica se eh cavalo *seria mais dificil*, adicionei essa verificação aqui
-        //Mas podemos mudar se quiser
-        if (!caminho.estaLivre() && !(peca instanceof Cavalo)) {
+        if (!caminho.estaLivre()) {
             return false;
         }
+        
         if (peca instanceof Peao) {
             boolean movimentoPeao = peca.movimentoValido(linhaInicial, colunaInicial, linhaFinal, colunaFinal);
             if (movimentoPeao) {
