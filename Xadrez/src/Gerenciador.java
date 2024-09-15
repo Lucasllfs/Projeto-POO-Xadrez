@@ -312,6 +312,9 @@ public class Gerenciador {
 */
 
         System.out.println("\nTestes do método estaLivre:");
+        Caminho caminho0 = new Caminho(t, "1b3c");
+        System.out.println("Teste 0 (cavalo pula peça, sempre tem caminho livre) - Esperado: true, Obtido: " + caminho0.estaLivre());
+
         Caminho caminho4 = new Caminho(t, "2a3a4a");
         System.out.println("Teste 1 (caminho vertical) - Esperado: true, Obtido: " + caminho4.estaLivre());
 
