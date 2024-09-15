@@ -1,3 +1,4 @@
+// Trabalho POO - Grupo 8: Anne Mari Suenaga Sakai, Eline Vieira, Gabrielle Caram, Kauê Almeida Gonçalves de Oliveira, Lucas Lima Felix da Silva
 package Pecas;
 
 public class Peao extends Peca {
