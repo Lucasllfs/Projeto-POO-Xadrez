@@ -496,11 +496,8 @@ public class Gerenciador {
         Jogador jogadorPretas = new Jogador("JogadorPretas", Arrays.asList(peaoPreto, cavaloPreto, torrePreta));
 
         System.out.println("\nTestes do método ehValida");
-        Jogada jogada0 = new Jogada(jogadorBrancas, peaoBranco, 2, 'a', 4, 'a', tabuleiro); // Movimento válido para um
-                                                                                            // Peão na posição inicial
-        System.out.println(
-                "Teste 0 (movimento válido: Peão na posição inicial move duas casas) - Esperado: true, Obtido: "
-                        + jogada0.ehValida(tabuleiro));
+        Jogada jogada0 = new Jogada(jogadorBrancas, peaoBranco, 2, 'e', 4, 'e', tabuleiro); // Movimento válido para um Peão na posição inicial
+        System.out.println("Teste 0 (movimento válido: Peão na posição inicial move duas casas) - Esperado: true, Obtido: " + jogada0.ehValida(tabuleiro));
         Jogada jogada1 = new Jogada(jogadorBrancas, peaoBranco, 2, 'a', 3, 'a', tabuleiro);
         System.out.println("Teste 1 (movimento válido Peão) - Esperado: true, Obtido: " + jogada1.ehValida(tabuleiro));
         Jogada jogada2 = new Jogada(jogadorBrancas, peaoBranco, 2, 'a', 3, 'b', tabuleiro);
@@ -553,14 +550,11 @@ public class Gerenciador {
         System.out.println(
                 "\nTeste 13 (Caminho não está livre) - Esperado: false, Obtido: " + jogada13.ehValida(tabuleiro));
 
-        Jogada jogada14 = new Jogada(jogadorBrancas, damaBranca, 1, 'd', 9, 'd', tabuleiro); // Linha final fora dos
-                                                                                             // limites
-        System.out.println("\nTeste 14 (Movimento fora dos limites do tabuleiro) - Esperado: false, Obtido: "
-                + jogada14.ehValida(tabuleiro));
-
-        Jogada jogada15 = new Jogada(jogadorBrancas, damaBranca, 3, 'a', 4, 'a', tabuleiro);
-        System.out.println("\nTeste 15 (Casa inicial não está ocupada) - Esperado: false, Obtido: "
-                + jogada15.ehValida(tabuleiro));
+        Jogada jogada14 = new Jogada(jogadorBrancas, damaBranca, 1, 'd', 9, 'd', tabuleiro); // Linha final fora dos limites
+        System.out.println("\nTeste 14 (Movimento fora dos limites do tabuleiro) - Esperado: false, Obtido: " + jogada14.ehValida(tabuleiro));
+    
+        Jogada jogada15 = new Jogada(jogadorBrancas, damaBranca, 3, 'g', 4, 'g', tabuleiro);
+        System.out.println("\nTeste 15 (Casa inicial não está ocupada) - Esperado: false, Obtido: " + jogada15.ehValida(tabuleiro));
 
         tabuleiro.getCasa(1, 'd').setPeca(new Dama(false)); // Coloca uma Dama preta em d1
         Jogada jogada16 = new Jogada(jogadorBrancas, damaBranca, 1, 'd', 3, 'd', tabuleiro);
@@ -585,27 +579,8 @@ public class Gerenciador {
         jogo.setJogadores(jogador1, jogador2);
 
         System.out.println("Testes do método jogadaValida");
-        System.out.println("Teste 1: Jogada válida - Esperado: true, Obtido: " + jogo.jogadaValida(2, 'a', 3, 'a')); // Jogada
-                                                                                                                     // de
-                                                                                                                     // peão,
-                                                                                                                     // linha
-                                                                                                                     // 1,
-                                                                                                                     // coluna
-                                                                                                                     // 'a'
-                                                                                                                     // para
-                                                                                                                     // linha
-                                                                                                                     // 3
-        System.out.println("Teste 2: jogada inválida - Esperado: false, Obtido: " + jogo.jogadaValida(1, 'a', 4, 'a')); // Jogada
-                                                                                                                        // inválida
-                                                                                                                        // de
-                                                                                                                        // peão,
-                                                                                                                        // linha
-                                                                                                                        // 1,
-                                                                                                                        // coluna
-                                                                                                                        // 'a'
-                                                                                                                        // para
-                                                                                                                        // linha
-                                                                                                                        // 4
+        System.out.println("Teste 1: Jogada válida - Esperado: true, Obtido: " + jogo.jogadaValida(2, 'a', 3, 'a'));  // Jogada de peão, linha 2, coluna 'a' para linha 3
+        System.out.println("Teste 2: jogada inválida - Esperado: false, Obtido: " + jogo.jogadaValida(1, 'a', 4, 'a'));  // Jogada inválida de peão, linha 1, coluna 'a' para linha 4
 
         System.out.println("\nTestes dos métodos realizarJogada e registroJogo");
         jogo.realizarJogada(2, 'a', 3, 'a'); // Movimentar peão
@@ -623,18 +598,18 @@ public class Gerenciador {
         System.out.println("\nTestes do método processarJogada");
         System.out.println("Teste 5: Processar jogada com formato inválido");
         System.out.println("Esperado: false, Obtido: " + jogo.processarJogada("a1"));
-        System.out.println("Teste 6: Processar jogada válida (brancas) ERRO RIMPRIMINDO JOGADA INVALIDA");
+        System.out.println("Teste 6: Processar jogada válida (brancas)");
         System.out.println("Esperado: true, Obtido: " + jogo.processarJogada("2e3e"));
-        System.out.println("Teste 10: Processar jogada válida (pretas)");
+        System.out.println("Teste 7: Processar jogada válida (pretas)");
         System.out.println("Esperado: true, Obtido: " + jogo.processarJogada("7e6e"));
 
         System.out.println("\nTestes do método mostrarTabuleiro\n Mudar acesso do método para public temporariamente");
-        System.out.println("Teste 7: Mostrar tabuleiro");
+        System.out.println("Teste 8: Mostrar tabuleiro");
         jogo.mostrarTabuleiro();
-
-        System.out.println("\nTestes do método inicializarPecas ERRO ADICIONANDO 2 DAMAS e 2 REIS");
+        
+        System.out.println("\nTestes do método inicializarPecas");
         List<Peca> pecasPretas = jogo.inicializarPecas(false);
-        System.out.println("Teste 8: Peças Pretas:");
+        System.out.println("Teste 9: Peças Pretas:");
         for (Peca peca : pecasPretas) {
             System.out.println(peca.desenho());
         }
