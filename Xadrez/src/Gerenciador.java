@@ -129,15 +129,17 @@ public class Gerenciador {
         Bispo bispoBranco = new Bispo(true);
 
         System.out.println("Desenho (esperado 'B'): " + bispoBranco.desenho());
-        System.out.println("É Branco (esperado true): " + bispoBranco.isBranca());
-        System.out.println("Está capturada (esperado false): " + bispoBranco.Capturada());
-        bispoBranco.setCapturada(true);
-        System.out.println("Está capturada (após setCapturada(true)): " + bispoBranco.Capturada());
         System.out.println("Movimento válido (esperado true): " + bispoBranco.movimentoValido(2, 'a', 4, 'c'));
         System.out.println("Movimento inválido (esperado false): " + bispoBranco.movimentoValido(2, 'a', 5, 'b'));
         System.out.println("Caminho (esperado '1a2b3c4d' para mover de (1,a) a (4,d)): " + bispoBranco.caminho(1, 'a', 4, 'd'));
         System.out.println("Caminho (esperado '' para movimento inválido): " + bispoBranco.caminho(1, 'a', 4, 'b'));
         System.out.println();
+
+        System.out.println("Testes dos métodos padrão de Peca:"
+        System.out.println("É Branco (esperado true): " + bispoBranco.isBranca());
+        System.out.println("Está capturada (esperado false): " + bispoBranco.Capturada());
+        bispoBranco.setCapturada(true);
+        System.out.println("Está capturada (após setCapturada(true)): " + bispoBranco.Capturada());
     }
 
     private static void testarCavalo() {
@@ -261,9 +263,9 @@ public class Gerenciador {
 
         // Testes para o método getCasa
         System.out.println("\nTestes para getCasa:");
-        System.out.println("Casa em linha 2, coluna 'a', Esperado: P, Obtido: " + tabuleiro.getCasa(2, 'a')); // Deve exibir P
-        System.out.println("Casa em linha 1, coluna 'b', Esperado: C, Obtido: " + tabuleiro.getCasa(1, 'b')); // Deve exibir C
-        System.out.println("Casa em linha 8, coluna 'h', Esperado: t, Obtido: " + tabuleiro.getCasa(8, 'h')); // Deve exibir t
+        System.out.println("Casa em linha 2, coluna 'a', Esperado: P, Obtido: " + tabuleiro.getCasa(2, 'a').getPeca().desenho()); // Deve exibir P
+        System.out.println("Casa em linha 1, coluna 'b', Esperado: C, Obtido: " + tabuleiro.getCasa(1, 'b').getPeca().desenho()); // Deve exibir C
+        System.out.println("Casa em linha 8, coluna 'h', Esperado: t, Obtido: " + tabuleiro.getCasa(8, 'h').getPeca().desenho()); // Deve exibir t
         System.out.println("Casa em linha 9, coluna 'a', Esperado: null, Obtido: " + tabuleiro.getCasa(9, 'a')); // Deve ser null
         System.out.println("Casa em linha 1, coluna 'i', Esperado: null, Obtido: " + tabuleiro.getCasa(1, 'i')); // Deve ser null
         System.out.println("Casa em linha -1, coluna 'z', Esperado: null, Obtido: " + tabuleiro.getCasa(-1, 'z')); // Deve ser null
@@ -537,7 +539,7 @@ public class Gerenciador {
         System.out.println("Teste 10: Processar jogada válida (pretas)");
         System.out.println("Esperado: true, Obtido: " + jogo.processarJogada("7e6e"));
 
-        System.out.println("\nTestes do método mostrarTabuleiro\n Mudar método para public");
+        System.out.println("\nTestes do método mostrarTabuleiro\n Mudar acesso do método para public temporariamente");
         System.out.println("Teste 7: Mostrar tabuleiro");
         jogo.mostrarTabuleiro();
         
@@ -548,7 +550,7 @@ public class Gerenciador {
             System.out.println(peca.desenho());
         }
         
-        System.out.println("\nTestes do método encerrarJogo");
+        System.out.println("\nTestes do método encerrarJogo\n Mudar acesso do método para public temporaiamente");
         jogo.encerrarJogo();
         
         System.out.println("\nTestes do método iniciarJogoArmazenado");
