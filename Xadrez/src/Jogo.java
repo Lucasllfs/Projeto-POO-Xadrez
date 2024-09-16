@@ -191,7 +191,7 @@ public class Jogo {
         return true;
     }
 
-    private void mostrarTabuleiro() {
+    void mostrarTabuleiro() {
         System.out.println(tabuleiro.desenho());
         //Verificar se está aparecendo certo
         System.out.println("Capturadas pelo " + jogador1.getNome() + ": " + jogador1.pecasCapturadas());
@@ -205,7 +205,7 @@ public class Jogo {
         this.jogadorAtual = jogador1;  // Começa sempre com o jogador 1, ou pode-se usar alguma lógica para decidir de quem é a vez.
     }
 
-    private void encerrarJogo() {
+    public void encerrarJogo() {
         System.out.println("Jogo encerrado.");
         this.jogoAtivo = false;
     }

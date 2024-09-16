@@ -1,6 +1,8 @@
 // Trabalho POO - Grupo 8: Anne Mari Suenaga Sakai, Eline Vieira, Gabrielle Caram, Kauê Almeida Gonçalves de Oliveira, Lucas Lima Felix da Silva
 import java.sql.SQLOutput;
 import java.io.*;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import Pecas.Peca;
@@ -10,6 +12,7 @@ import Pecas.Dama;
 import Pecas.Peao;
 import Pecas.Rei;
 import Pecas.Torre;
+
 
 
 //main nao implementada
@@ -57,7 +60,15 @@ public class Gerenciador {
 
     private void iniciarNovoJogo() {
         jogo.iniciarJogo();
-        salvarJogo();
+        //perguntar se deseja salvar se nao apenas encerra
+        System.out.println("Deseja salvar o jogo? (Sim/Nao)");
+        String resposta = scanner.nextLine();
+        if (resposta.equalsIgnoreCase("Sim")) {
+            salvarJogo();
+        } else {
+            System.out.println("Jogo não salvo.");
+        }
+    
     }
 
     private void carregarJogo() {
