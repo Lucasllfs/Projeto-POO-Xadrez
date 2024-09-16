@@ -63,20 +63,24 @@ public class Tabuleiro {
         }
     }
 
-    public Casa localizaPeca (Peca peca) {
+    public Casa localizaPeca(Peca peca) {
         for (int linha = 1; linha <= 8; linha++) {
             for (char coluna = 'a'; coluna <= 'h'; coluna++) {
                 Casa casa = getCasa(linha, coluna);
-                if (casa.estaOcupada() && casa.getPeca().equals(peca)) {
-                    return casa;
+                // Verifica se a casa não é nula e está ocupada
+                if (casa != null && casa.estaOcupada() && casa.getPeca().desenho() == peca.desenho()) {
+                    return casa; // Retorna a casa onde a peça foi encontrada
                 }
             }
         }
-        return null;
+        return null; // Retorna null se a peça não for encontrada
     }
+    
+    
 
     public String desenho() {
         StringBuilder desenho = new StringBuilder();
+        desenho.append("\n");
         desenho.append("  A B C D E F G H\n");
         for (int linha = 8; linha >= 1; linha--) {
             desenho.append(linha).append(" ");

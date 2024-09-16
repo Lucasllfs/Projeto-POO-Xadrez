@@ -66,7 +66,14 @@ public class Gerenciador {
         if (resposta.equalsIgnoreCase("Sim")) {
             salvarJogo();
         } else {
-            System.out.println("Jogo não salvo.");
+            System.out.println("Deseja iniciar outro jogo? (Sim/Nao)");
+            String resposta2 = scanner.nextLine();
+            if (resposta2.equalsIgnoreCase("Sim")) {
+                
+                iniciarNovoJogo();
+            } else {
+                System.out.println("Jogo não salvo.");
+            }
         }
     
     }
@@ -100,8 +107,23 @@ public class Gerenciador {
     
             // Inicia o jogo após o carregamento
             jogo.iniciarJogoArmazenado();
+
+            System.out.println("Deseja salvar o jogo? (Sim/Nao)");
+            String resposta = scanner.nextLine();
+            if (resposta.equalsIgnoreCase("Sim")) {
+                salvarJogo();
+            } else {
+                System.out.println("Deseja iniciar outro jogo? (Sim/Nao)");
+            String resposta2 = scanner.nextLine();
+            if (resposta2.equalsIgnoreCase("Sim")) {
+                iniciarNovoJogo();
+            } else {
+                System.out.println("Jogo não salvo.");
+            }
+            }
         } catch (IOException e) {
             System.out.println("Erro ao carregar o arquivo: " + e.getMessage());
+            carregarJogo();
         }
     }
     
@@ -114,6 +136,14 @@ public class Gerenciador {
         try (BufferedWriter escritor = new BufferedWriter(new FileWriter(nomeArquivo))) {
             escritor.write(jogo.registroJogo());
             System.out.println("Jogo salvo com sucesso.");
+            System.out.println("Deseja iniciar outro jogo? (Sim/Nao)");
+            String resposta = scanner.nextLine();
+            if (resposta.equalsIgnoreCase("Sim")) {
+                iniciarNovoJogo();
+            } 
+
+
+
         } catch (IOException e) {
             System.out.println("Erro ao salvar o jogo: " + e.getMessage());
         }
@@ -146,7 +176,7 @@ public class Gerenciador {
         System.out.println("Caminho (esperado '' para movimento inválido): " + bispoBranco.caminho(1, 'a', 4, 'b'));
         System.out.println();
 
-        System.out.println("Testes dos métodos padrão de Peca:"
+        System.out.println("Testes dos métodos padrão de Peca:");
         System.out.println("É Branco (esperado true): " + bispoBranco.isBranca());
         System.out.println("Está capturada (esperado false): " + bispoBranco.Capturada());
         bispoBranco.setCapturada(true);
