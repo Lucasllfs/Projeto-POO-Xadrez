@@ -169,18 +169,18 @@ public class Gerenciador {
         System.out.println("Testando Bispo...");
         Bispo bispoBranco = new Bispo(true);
 
+        System.out.println("Testes dos métodos padrão de Peca:");
+        System.out.println("É Branco (esperado true): " + bispoBranco.isBranca());
+        System.out.println("Está capturada (esperado false): " + bispoBranco.capturada());
+        bispoBranco.setCapturada(true);
+        System.out.println("Está capturada (após setCapturada(true)): " + bispoBranco.capturada());
+        
         System.out.println("Desenho (esperado 'B'): " + bispoBranco.desenho());
         System.out.println("Movimento válido (esperado true): " + bispoBranco.movimentoValido(2, 'a', 4, 'c'));
         System.out.println("Movimento inválido (esperado false): " + bispoBranco.movimentoValido(2, 'a', 5, 'b'));
         System.out.println("Caminho (esperado '1a2b3c4d' para mover de (1,a) a (4,d)): " + bispoBranco.caminho(1, 'a', 4, 'd'));
         System.out.println("Caminho (esperado '' para movimento inválido): " + bispoBranco.caminho(1, 'a', 4, 'b'));
         System.out.println();
-
-        System.out.println("Testes dos métodos padrão de Peca:");
-        System.out.println("É Branco (esperado true): " + bispoBranco.isBranca());
-        System.out.println("Está capturada (esperado false): " + bispoBranco.capturada());
-        bispoBranco.setCapturada(true);
-        System.out.println("Está capturada (após setCapturada(true)): " + bispoBranco.capturada());
     }
 
     private static void testarCavalo() {
