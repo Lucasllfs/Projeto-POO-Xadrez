@@ -22,6 +22,7 @@ public abstract class Peca {
     }
 
     public abstract String desenho();
+    
 
     public abstract boolean movimentoValido(int linhaO, char colunaO, int linhaD, char colunaD);
 

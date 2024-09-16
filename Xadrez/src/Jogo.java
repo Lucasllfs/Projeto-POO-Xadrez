@@ -65,10 +65,26 @@ public class Jogo {
             }
 
             if (processarJogada(jogada)) {
+                
+
                 alternarJogador();
             }
         }
     }
+
+    // private void verificaXeque(Jogada jogada ) {
+    //     // Implementar lógica para verificar se o rei do jogador atual está em xeque
+    //     if (jogada.ehXeque(tabuleiro, jogadorAtual)) {
+    //         System.out.println("Xeque no " + (jogadorAtual == jogador1 ? "branco" : "preto"));
+
+    //         if (jogada.ehXequeMate(tabuleiro, jogadorAtual)) {
+    //             System.out.println("Xeque-mate! " + (jogadorAtual == jogador1 ? "Branco" : "Preto") + " venceu!");
+    //             break; // Termina o jogo
+    //         }
+    //     }
+    // }
+
+
 
 
 
@@ -103,6 +119,17 @@ public class Jogo {
         }
 
         Jogada jogada = new Jogada(jogadorAtual, peca, linhaO, colunaO, linhaD, colunaD, tabuleiro);
+
+        if (jogada.ehXeque(tabuleiro, jogadorAtual)) {
+            System.out.println("Xeque no " + (jogadorAtual == jogador1 ? "branco" : "preto"));
+
+            if (jogada.ehXequeMate(tabuleiro, jogadorAtual)) {
+                System.out.println("Xeque-mate! " + (jogadorAtual == jogador1 ? "Branco" : "Preto") + " venceu!");
+
+                encerrarJogo();
+            }
+        }
+
         return jogada.ehValida(tabuleiro);
     }
 
@@ -125,6 +152,8 @@ public class Jogo {
             casaOrigem.setPeca(null);
 
             historicoJogadas.add("" + linhaO + colunaO + linhaD + colunaD);
+
+
 
            // mostrarTabuleiro();
         } else {
@@ -158,6 +187,9 @@ public class Jogo {
         char colunaD = jogada.charAt(3);
 
         realizarJogada(linhaO, colunaO, linhaD, colunaD);
+
+
+
         return true;
     }
 

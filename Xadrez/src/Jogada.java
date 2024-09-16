@@ -1,4 +1,5 @@
 import Pecas.Peca;
+import Pecas.Rei;
 import Pecas.Cavalo;
 import Pecas.Peao;
 
@@ -64,13 +65,84 @@ public class Jogada {
         }
     }
 
-    public boolean ehXeque() {
-        // Implementar lógica para verificar xeque
-        return false;
-    }
 
-    public boolean ehXequeMate() {
-        // Implementar lógica para verificar xeque mate
-        return false;
+    public boolean ehXeque(Tabuleiro tabuleiro, Jogador jogadorOponente) {
+        // Localiza o rei do oponente no tabuleiro
+        Peca reiOponente = null;
+        
+        for (int linha = 1; linha <= 8; linha++) {
+            for (char coluna = 'A'; coluna <= 'H'; coluna++) {
+                Peca peca = tabuleiro.getCasa(linha, coluna).getPeca();
+                if (peca instanceof Rei && peca.isBranca() == jogadorOponente.getPecas().get(0).isBranca()) {
+                    reiOponente = peca;
+                    
+                    break;
+                }
+            }
+            if (reiOponente != null) break;
+        }
+    
+        if (reiOponente == null) return false; // Se não há rei (erro)
+    
+        // Verifica se alguma peça do jogador atual pode capturar o rei do oponente
+        for (int linha = 1; linha <= 8; linha++) {
+            for (char coluna = 'A'; coluna <= 'H'; coluna++) {
+                Peca peca = tabuleiro.getCasa(linha, coluna).getPeca();
+                if (peca != null && peca.isBranca() != jogadorOponente.getPecas().get(0).isBranca()) {
+                    if (peca.movimentoValido(linha, coluna, tabuleiro.localizaPeca(reiOponente).getLinha(), tabuleiro.localizaPeca(reiOponente).getColuna())) {
+                        return true; // O rei está sob ataque
+                    }
+                }
+            }
+        }
+    
+        return false; // O rei não está sob ataque
     }
+    
+
+
+
+    public boolean ehXequeMate(Tabuleiro tabuleiro, Jogador jogadorOponente) {
+        if (!ehXeque(tabuleiro, jogadorOponente)) {
+            return false; // Se não está em xeque, não pode ser xeque-mate
+        }
+    
+        Peca reiOponente = null;
+    
+        // Localiza o rei do oponente
+        for (int linha = 1; linha <= 8; linha++) {
+            for (char coluna = 'A'; coluna <= 'H'; coluna++) {
+                Peca peca = tabuleiro.getCasa(linha, coluna).getPeca();
+                if (peca instanceof Rei && peca.isBranca() == jogadorOponente.getPecas().get(0).isBranca()) {
+                    reiOponente = peca;
+                    break;
+                }
+            }
+            if (reiOponente != null) break;
+        }
+    
+        if (reiOponente == null) return false;
+    
+        int linhaRei =  tabuleiro.localizaPeca(reiOponente).getLinha();
+        char colunaRei =  tabuleiro.localizaPeca(reiOponente).getColuna();
+    
+        // Testa todos os movimentos possíveis do rei
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                int novaLinha = linhaRei + i;
+                char novaColuna = (char) (colunaRei + j);
+    
+                if (tabuleiro.noLimite(novaLinha, novaColuna)) {
+                    // Se o movimento é válido e não deixa o rei em xeque, não é xeque-mate
+                    if (reiOponente.movimentoValido(linhaRei, colunaRei, novaLinha, novaColuna)
+                        && !ehXeque(tabuleiro, jogadorOponente)) {
+                        return false;
+                    }
+                }
+            }
+        }
+    
+        return true; // Se nenhum movimento é possível sem xeque, é xeque-mate
+    }
+    
 }

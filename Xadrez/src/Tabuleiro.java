@@ -62,6 +62,18 @@ public class Tabuleiro {
         }
     }
 
+    public Casa localizaPeca (Peca peca) {
+        for (int linha = 1; linha <= 8; linha++) {
+            for (char coluna = 'a'; coluna <= 'h'; coluna++) {
+                Casa casa = getCasa(linha, coluna);
+                if (casa.estaOcupada() && casa.getPeca().equals(peca)) {
+                    return casa;
+                }
+            }
+        }
+        return null;
+    }
+
     public String desenho() {
         StringBuilder desenho = new StringBuilder();
         desenho.append("  A B C D E F G H\n");
