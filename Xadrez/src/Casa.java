@@ -7,7 +7,16 @@ public class Casa {
     private char coluna; // De 'a' a 'h'
     private Peca peca;   // Referência para a peça que ocupa a casa (pode ser null)
 
-    public Casa(String cor, int linha, char coluna) {
+     public Casa(String cor, int linha, char coluna) throws IllegalArgumentException {
+        if (!cor.equals("branco") && !cor.equals("preto")) {
+            throw new IllegalArgumentException("Cor inválida. Use 'branco' ou 'preto'.");
+        }
+        if (linha < 1 || linha > 8) {
+            throw new IllegalArgumentException("Linha inválida. Deve estar entre 1 e 8.");
+        }
+        if (coluna < 'a' || coluna > 'h') {
+            throw new IllegalArgumentException("Coluna inválida. Deve estar entre 'a' e 'h'.");
+        }
         this.cor = cor;
         this.linha = linha;
         this.coluna = coluna;
