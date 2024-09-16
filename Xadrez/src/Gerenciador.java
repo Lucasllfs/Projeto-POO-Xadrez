@@ -575,7 +575,7 @@ public class Gerenciador {
         System.out.println("\nTestes do método processarJogada");
         System.out.println("Teste 5: Processar jogada com formato inválido");
         System.out.println("Esperado: false, Obtido: " + jogo.processarJogada("a1"));
-        System.out.println("Teste 6: Processar jogada válida (brancas) ERRO RIMPRIMINDO JOGADA INVALIDA");
+        System.out.println("Teste 6: Processar jogada válida (brancas)");
         System.out.println("Esperado: true, Obtido: " + jogo.processarJogada("2e3e"));
         System.out.println("Teste 10: Processar jogada válida (pretas)");
         System.out.println("Esperado: true, Obtido: " + jogo.processarJogada("7e6e"));
@@ -584,7 +584,7 @@ public class Gerenciador {
         System.out.println("Teste 7: Mostrar tabuleiro");
         jogo.mostrarTabuleiro();
         
-        System.out.println("\nTestes do método inicializarPecas ERRO ADICIONANDO 2 DAMAS e 2 REIS");
+        System.out.println("\nTestes do método inicializarPecas");
         List<Peca> pecasPretas = jogo.inicializarPecas(false);
         System.out.println("Teste 8: Peças Pretas:");
         for (Peca peca : pecasPretas) {
