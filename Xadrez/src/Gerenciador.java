@@ -178,9 +178,9 @@ public class Gerenciador {
 
         System.out.println("Testes dos métodos padrão de Peca:");
         System.out.println("É Branco (esperado true): " + bispoBranco.isBranca());
-        System.out.println("Está capturada (esperado false): " + bispoBranco.Capturada());
+        System.out.println("Está capturada (esperado false): " + bispoBranco.capturada());
         bispoBranco.setCapturada(true);
-        System.out.println("Está capturada (após setCapturada(true)): " + bispoBranco.Capturada());
+        System.out.println("Está capturada (após setCapturada(true)): " + bispoBranco.capturada());
     }
 
     private static void testarCavalo() {
