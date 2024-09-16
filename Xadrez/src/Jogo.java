@@ -1,3 +1,4 @@
+// Trabalho POO - Grupo 8: Anne Mari Suenaga Sakai, Eline Vieira, Gabrielle Caram, Kauê Almeida Gonçalves de Oliveira, Lucas Lima Felix da Silva
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -114,10 +115,7 @@ public class Jogo {
         }
 
         Peca peca = casaOrigem.getPeca();
-        if (!peca.movimentoValido(linhaO, colunaO, linhaD, colunaD)) {
-            return false;
-        }
-
+        
         Jogada jogada = new Jogada(jogadorAtual, peca, linhaO, colunaO, linhaD, colunaD, tabuleiro);
 
         if (jogada.ehXeque(tabuleiro, jogadorAtual)) {

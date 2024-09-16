@@ -1,3 +1,4 @@
+// Trabalho POO - Grupo 8: Anne Mari Suenaga Sakai, Eline Vieira, Gabrielle Caram, Kauê Almeida Gonçalves de Oliveira, Lucas Lima Felix da Silva
 import Pecas.Peca;
 import Pecas.Rei;
 import Pecas.Cavalo;
@@ -38,12 +39,10 @@ public class Jogada {
             return false;
         }
        
-
-        //como na classe caminho não verifica se eh cavalo *seria mais dificil*, adicionei essa verificação aqui
-        //Mas podemos mudar se quiser
-        if (!caminho.estaLivre() && !(peca instanceof Cavalo)) {
+        if (!caminho.estaLivre()) {
             return false;
         }
+        
         if (peca instanceof Peao) {
             boolean movimentoPeao = peca.movimentoValido(linhaInicial, colunaInicial, linhaFinal, colunaFinal);
             if (movimentoPeao) {
@@ -53,8 +52,13 @@ public class Jogada {
                     } else {
                         return false;
                     }
-                } 
-                return true;
+                } else {
+                    if(casaFinal.estaOcupada()) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
             } else {
                 return false;
             }
