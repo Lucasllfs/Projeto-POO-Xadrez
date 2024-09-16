@@ -487,7 +487,7 @@ public class Gerenciador {
         Jogador jogadorPretas = new Jogador("JogadorPretas", Arrays.asList(peaoPreto, cavaloPreto, torrePreta));
 
         System.out.println("\nTestes do método ehValida");
-        Jogada jogada0 = new Jogada(jogadorBrancas, peaoBranco, 2, 'a', 4, 'a', tabuleiro); // Movimento válido para um Peão na posição inicial
+        Jogada jogada0 = new Jogada(jogadorBrancas, peaoBranco, 2, 'e', 4, 'e', tabuleiro); // Movimento válido para um Peão na posição inicial
         System.out.println("Teste 0 (movimento válido: Peão na posição inicial move duas casas) - Esperado: true, Obtido: " + jogada0.ehValida(tabuleiro));
         Jogada jogada1 = new Jogada(jogadorBrancas, peaoBranco, 2, 'a', 3, 'a', tabuleiro);
         System.out.println("Teste 1 (movimento válido Peão) - Esperado: true, Obtido: " + jogada1.ehValida(tabuleiro));
