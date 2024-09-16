@@ -528,7 +528,7 @@ public class Gerenciador {
         Jogada jogada14 = new Jogada(jogadorBrancas, damaBranca, 1, 'd', 9, 'd', tabuleiro); // Linha final fora dos limites
         System.out.println("\nTeste 14 (Movimento fora dos limites do tabuleiro) - Esperado: false, Obtido: " + jogada14.ehValida(tabuleiro));
     
-        Jogada jogada15 = new Jogada(jogadorBrancas, damaBranca, 3, 'a', 4, 'a', tabuleiro);
+        Jogada jogada15 = new Jogada(jogadorBrancas, damaBranca, 3, 'g', 4, 'g', tabuleiro);
         System.out.println("\nTeste 15 (Casa inicial não está ocupada) - Esperado: false, Obtido: " + jogada15.ehValida(tabuleiro));
 
         tabuleiro.getCasa(1, 'd').setPeca(new Dama(false)); // Coloca uma Dama preta em d1
