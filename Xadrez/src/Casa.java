@@ -1,13 +1,14 @@
+
 // Trabalho POO - Grupo 8: Anne Mari Suenaga Sakai, Eline Vieira, Gabrielle Caram, Kauê Almeida Gonçalves de Oliveira, Lucas Lima Felix da Silva
 import Pecas.*;
 
 public class Casa {
-    private String cor;  // Pode ser "branco" ou "preto"
-    private int linha;   // De 1 a 8
+    private String cor; // Pode ser "branco" ou "preto"
+    private int linha; // De 1 a 8
     private char coluna; // De 'a' a 'h'
-    private Peca peca;   // Referência para a peça que ocupa a casa (pode ser null)
+    private Peca peca; // Referência para a peça que ocupa a casa (pode ser null)
 
-     public Casa(String cor, int linha, char coluna) throws IllegalArgumentException {
+    public Casa(String cor, int linha, char coluna) throws IllegalArgumentException {
         if (!cor.equals("branco") && !cor.equals("preto")) {
             throw new IllegalArgumentException("Cor inválida. Use 'branco' ou 'preto'.");
         }

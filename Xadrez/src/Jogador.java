@@ -1,10 +1,10 @@
+
 // Trabalho POO - Grupo 8: Anne Mari Suenaga Sakai, Eline Vieira, Gabrielle Caram, Kauê Almeida Gonçalves de Oliveira, Lucas Lima Felix da Silva
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import Pecas.Peca;
-
 public class Jogador {
     private String nome;
     private List<Peca> pecas;
@@ -42,19 +42,13 @@ public class Jogador {
     }
 
     public String informaJogada() {
-
-        //Não lembro se tem que fechar o scanner
         Scanner scanner = new Scanner(System.in);
-
         System.out.print("Digite a jogada (ou 'parar' para interromper): ");
         return scanner.nextLine();
     }
 
     public String pecasCapturadas() {
-
-        //esse cara permite que a gente crie strings que podem ser alteradas
         StringBuilder capturadas = new StringBuilder();
-
         for (Peca peca : pecasCapturadas) {
             capturadas.append(peca.desenho()).append(" ");
         }

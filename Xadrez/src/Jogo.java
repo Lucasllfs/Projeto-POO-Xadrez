@@ -1,3 +1,4 @@
+
 // Trabalho POO - Grupo 8: Anne Mari Suenaga Sakai, Eline Vieira, Gabrielle Caram, Kauê Almeida Gonçalves de Oliveira, Lucas Lima Felix da Silva
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,6 @@ import Pecas.Cavalo;
 import Pecas.Bispo;
 import Pecas.Dama;
 import Pecas.Rei;
-
 
 public class Jogo {
     private Tabuleiro tabuleiro;
@@ -54,17 +54,17 @@ public class Jogo {
                 if (nomeJogador2 == null || nomeJogador2.trim().isEmpty()) {
                     throw new IllegalArgumentException("Nome do jogador 2 inválido. Por favor, insira um nome válido.");
                 }
-                
+
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());
             }
         }
-        
+
         jogador1 = new Jogador(nomeJogador1, inicializarPecas(true));
         jogador2 = new Jogador(nomeJogador2, inicializarPecas(false));
-        jogadorAtual = jogador1;  // Jogador 1 começa
+        jogadorAtual = jogador1; // Jogador 1 começa
 
-        //iniciar outro tabuleiro
+        // iniciar outro tabuleiro
         tabuleiro = new Tabuleiro();
 
         // Loop principal do jogo
@@ -79,17 +79,18 @@ public class Jogo {
                         encerrarJogo();
                         return;
                     }
-                    // verifica se a jogada está no formato 1a3b e também processa a jogada
+                    // Verifica se a jogada está no formato 1a3b e também processa a jogada
                     entradaValida = validarCaracteresJogada(jogada) && processarJogada(jogada);
-                    if(entradaValida) alternarJogador();
+                    if (entradaValida)
+                        alternarJogador();
                 } catch (Exception e) {
                     System.err.println("Erro ao processar a jogada: " + e.getMessage());
                 }
             }
         }
     }
+
     public void iniciarJogoArmazenado() {
-    
 
         // Loop principal do jogo
         while (jogoAtivo) {
@@ -101,15 +102,13 @@ public class Jogo {
             }
 
             if (processarJogada(jogada)) {
-                
 
                 alternarJogador();
             }
         }
     }
 
- 
-private boolean validarCaracteresJogada(String jogada) {
+    private boolean validarCaracteresJogada(String jogada) {
         // Verifica se a jogada é do tamanho correto, e se está no formato "1a3b"
         if (jogada.length() != 4) {
             System.out.println("Formato de jogada inválido: tamanho diferente do que o esperado");
@@ -129,7 +128,7 @@ private boolean validarCaracteresJogada(String jogada) {
         // Inicializa as peças do jogador
         List<Peca> pecas = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
-            pecas.add(new Peao(ehBranca));  // Adiciona peões, por exemplo
+            pecas.add(new Peao(ehBranca)); // Adiciona peões
         }
         // Adicionar outras peças (torres, cavalos, bispos, etc.) conforme necessário
         for (int i = 0; i < 2; i++) {
@@ -140,7 +139,6 @@ private boolean validarCaracteresJogada(String jogada) {
             pecas.add(new Rei(ehBranca));
         }
 
-        
         return pecas;
     }
 
@@ -151,13 +149,14 @@ private boolean validarCaracteresJogada(String jogada) {
         }
 
         Peca peca = casaOrigem.getPeca();
-        
+
         Jogada jogada = new Jogada(jogadorAtual, peca, linhaO, colunaO, linhaD, colunaD, tabuleiro);
+        Jogador jogadorOponente = (jogadorAtual == jogador1) ? jogador2 : jogador1;
 
-        if (jogada.ehXeque(tabuleiro, jogadorAtual)) {
-            System.out.println("Xeque no " + (jogadorAtual == jogador1 ? "branco" : "preto"));
+        if (jogada.ehXeque(peca, linhaD, colunaD, tabuleiro, jogadorOponente)) {
+            System.out.println("Xeque no " + (jogadorAtual != jogador1 ? "branco" : "preto"));
 
-            if (jogada.ehXequeMate(tabuleiro, jogadorAtual)) {
+            if (jogada.ehXequeMate(peca, linhaD, colunaD, tabuleiro, jogadorOponente, jogadorAtual)) {
                 System.out.println("Xeque-mate! " + (jogadorAtual == jogador1 ? "Branco" : "Preto") + " venceu!");
 
                 encerrarJogo();
@@ -176,7 +175,6 @@ private boolean validarCaracteresJogada(String jogada) {
             if (casaDestino.estaOcupada()) {
                 Peca pecaCapturada = casaDestino.getPeca();
                 if (pecaCapturada.isBranca() != pecaMovida.isBranca()) {
-                    //System.out.println("Peça capturada: " + pecaCapturada);
                     jogadorAtual.capturarPeca(pecaCapturada);
                 }
             }
@@ -187,9 +185,6 @@ private boolean validarCaracteresJogada(String jogada) {
 
             historicoJogadas.add("" + linhaO + colunaO + linhaD + colunaD);
 
-
-
-           // mostrarTabuleiro();
         } else {
             System.out.println("Jogada inválida.");
         }
@@ -222,25 +217,22 @@ private boolean validarCaracteresJogada(String jogada) {
 
         realizarJogada(linhaO, colunaO, linhaD, colunaD);
 
-
-
         return true;
     }
 
     void mostrarTabuleiro() {
         System.out.println("\n");
-        System.out.println("Capturadas pelo " + jogador2.getNome() + ": " + jogador2.pecasCapturadas());        
+        System.out.println("Capturadas pelo " + jogador2.getNome() + ": " + jogador2.pecasCapturadas());
         System.out.println(tabuleiro.desenho());
         System.out.println("Capturadas pelo " + jogador1.getNome() + ": " + jogador1.pecasCapturadas());
         System.out.println("\n");
 
     }
 
-
     public void setJogadores(Jogador jogador1, Jogador jogador2) {
         this.jogador1 = jogador1;
         this.jogador2 = jogador2;
-        this.jogadorAtual = jogador1;  // Começa sempre com o jogador 1, ou pode-se usar alguma lógica para decidir de quem é a vez.
+        this.jogadorAtual = jogador1; // Começa sempre com o jogador 1
     }
 
     public void encerrarJogo() {
