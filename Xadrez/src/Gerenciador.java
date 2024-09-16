@@ -557,7 +557,7 @@ public class Gerenciador {
         jogo.setJogadores(jogador1, jogador2);
 
         System.out.println("Testes do método jogadaValida");
-        System.out.println("Teste 1: Jogada válida - Esperado: true, Obtido: " + jogo.jogadaValida(2, 'a', 3, 'a'));  // Jogada de peão, linha 1, coluna 'a' para linha 3
+        System.out.println("Teste 1: Jogada válida - Esperado: true, Obtido: " + jogo.jogadaValida(2, 'a', 3, 'a'));  // Jogada de peão, linha 2, coluna 'a' para linha 3
         System.out.println("Teste 2: jogada inválida - Esperado: false, Obtido: " + jogo.jogadaValida(1, 'a', 4, 'a'));  // Jogada inválida de peão, linha 1, coluna 'a' para linha 4
 
         System.out.println("\nTestes dos métodos realizarJogada e registroJogo");
