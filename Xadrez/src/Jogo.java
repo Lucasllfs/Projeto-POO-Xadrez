@@ -29,12 +29,36 @@ public class Jogo {
     public void iniciarJogo() {
         this.jogoAtivo = true;
         Scanner scanner = new Scanner(System.in);
+        String nomeJogador1 = null;
+        String nomeJogador2 = null;
 
-        System.out.println("Digite o nome do Jogador 1: ");
-        String nomeJogador1 = scanner.nextLine();
-        System.out.println("Digite o nome do Jogador 2: ");
-        String nomeJogador2 = scanner.nextLine();
+        // Solicitar nome do jogador 1 até ser válido
+        while (nomeJogador1 == null || nomeJogador1.trim().isEmpty()) {
+            try {
+                System.out.println("Digite o nome do Jogador 1: ");
+                nomeJogador1 = scanner.nextLine();
+                if (nomeJogador1 == null || nomeJogador1.trim().isEmpty()) {
+                    throw new IllegalArgumentException("Nome do jogador 1 inválido. Por favor, insira um nome válido.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.err.println(e.getMessage());
+            }
+        }
 
+        // Solicitar nome do jogador 2 até ser válido.
+        while (nomeJogador2 == null || nomeJogador2.trim().isEmpty()) {
+            try {
+                System.out.println("Digite o nome do Jogador 2: ");
+                nomeJogador2 = scanner.nextLine();
+                if (nomeJogador2 == null || nomeJogador2.trim().isEmpty()) {
+                    throw new IllegalArgumentException("Nome do jogador 2 inválido. Por favor, insira um nome válido.");
+                }
+                
+            } catch (IllegalArgumentException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        
         jogador1 = new Jogador(nomeJogador1, inicializarPecas(true));
         jogador2 = new Jogador(nomeJogador2, inicializarPecas(false));
         jogadorAtual = jogador1;  // Jogador 1 começa
@@ -45,18 +69,24 @@ public class Jogo {
         // Loop principal do jogo
         while (jogoAtivo) {
             mostrarTabuleiro();
-            String jogada = jogadorAtual.informaJogada();
-            if (jogada.equalsIgnoreCase("parar")) {
-                encerrarJogo();
-                break;
-            }
-
-            if (processarJogada(jogada)) {
-                alternarJogador();
+            String jogada = null;
+            boolean entradaValida = false;
+            while (!entradaValida) {
+                try {
+                    jogada = jogadorAtual.informaJogada();
+                    if (jogada.equalsIgnoreCase("parar")) {
+                        encerrarJogo();
+                        return;
+                    }
+                    // verifica se a jogada está no formato 1a3b e também processa a jogada
+                    entradaValida = validarCaracteresJogada(jogada) && processarJogada(jogada);
+                    if(entradaValida) alternarJogador();
+                } catch (Exception e) {
+                    System.err.println("Erro ao processar a jogada: " + e.getMessage());
+                }
             }
         }
     }
-
     public void iniciarJogoArmazenado() {
     
 
