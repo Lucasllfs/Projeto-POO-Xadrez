@@ -27,6 +27,7 @@ public class Jogo {
     }
 
     public void iniciarJogo() {
+        this.jogoAtivo = true;
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Digite o nome do Jogador 1: ");
@@ -37,6 +38,9 @@ public class Jogo {
         jogador1 = new Jogador(nomeJogador1, inicializarPecas(true));
         jogador2 = new Jogador(nomeJogador2, inicializarPecas(false));
         jogadorAtual = jogador1;  // Jogador 1 começa
+
+        //iniciar outro tabuleiro
+        tabuleiro = new Tabuleiro();
 
         // Loop principal do jogo
         while (jogoAtivo) {
@@ -73,20 +77,7 @@ public class Jogo {
         }
     }
 
-    // private void verificaXeque(Jogada jogada ) {
-    //     // Implementar lógica para verificar se o rei do jogador atual está em xeque
-    //     if (jogada.ehXeque(tabuleiro, jogadorAtual)) {
-    //         System.out.println("Xeque no " + (jogadorAtual == jogador1 ? "branco" : "preto"));
-
-    //         if (jogada.ehXequeMate(tabuleiro, jogadorAtual)) {
-    //             System.out.println("Xeque-mate! " + (jogadorAtual == jogador1 ? "Branco" : "Preto") + " venceu!");
-    //             break; // Termina o jogo
-    //         }
-    //     }
-    // }
-
-
-
+ 
 
 
     protected List<Peca> inicializarPecas(boolean ehBranca) {
@@ -192,10 +183,12 @@ public class Jogo {
     }
 
     void mostrarTabuleiro() {
+        System.out.println("\n");
+        System.out.println("Capturadas pelo " + jogador2.getNome() + ": " + jogador2.pecasCapturadas());        
         System.out.println(tabuleiro.desenho());
-        //Verificar se está aparecendo certo
         System.out.println("Capturadas pelo " + jogador1.getNome() + ": " + jogador1.pecasCapturadas());
-        System.out.println("Capturadas pelo " + jogador2.getNome() + ": " + jogador2.pecasCapturadas());
+        System.out.println("\n");
+
     }
 
 
