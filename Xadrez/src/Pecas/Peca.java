@@ -14,7 +14,7 @@ public abstract class Peca {
         return Branca;
     }
 
-    public boolean Capturada() {
+    public boolean capturada() {
         return capturada;
     }
 
