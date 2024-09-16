@@ -25,7 +25,7 @@ public class Jogador {
     }
 
     public void capturarPeca(Peca peca) {
-        if (!peca.Capturada()) {
+        if (!peca.capturada()) {
             peca.setCapturada(true);
             pecasCapturadas.add(peca);
         }
@@ -34,7 +34,7 @@ public class Jogador {
     public List<Peca> getPecasAtivas() {
         List<Peca> ativas = new ArrayList<>();
         for (Peca peca : pecas) {
-            if (!peca.Capturada()) {
+            if (!peca.capturada()) {
                 ativas.add(peca);
             }
         }
