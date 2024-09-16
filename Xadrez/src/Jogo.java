@@ -109,7 +109,21 @@ public class Jogo {
     }
 
  
+private boolean validarCaracteresJogada(String jogada) {
+        // Verifica se a jogada é do tamanho correto, e se está no formato "1a3b"
+        if (jogada.length() != 4) {
+            System.out.println("Formato de jogada inválido: tamanho diferente do que o esperado");
+            return false;
+        }
 
+        String regex = "^[1-8][a-h][1-8][a-h]$";
+
+        boolean match = Pattern.matches(regex, jogada);
+        if (!match) {
+            System.out.println("Formato de jogada inválido: use o formato '1a3b'.");
+        }
+        return match;
+    }
 
     protected List<Peca> inicializarPecas(boolean ehBranca) {
         // Inicializa as peças do jogador
