@@ -577,16 +577,16 @@ public class Gerenciador {
         System.out.println("Esperado: false, Obtido: " + jogo.processarJogada("a1"));
         System.out.println("Teste 6: Processar jogada válida (brancas)");
         System.out.println("Esperado: true, Obtido: " + jogo.processarJogada("2e3e"));
-        System.out.println("Teste 10: Processar jogada válida (pretas)");
+        System.out.println("Teste 7: Processar jogada válida (pretas)");
         System.out.println("Esperado: true, Obtido: " + jogo.processarJogada("7e6e"));
 
         System.out.println("\nTestes do método mostrarTabuleiro\n Mudar acesso do método para public temporariamente");
-        System.out.println("Teste 7: Mostrar tabuleiro");
+        System.out.println("Teste 8: Mostrar tabuleiro");
         jogo.mostrarTabuleiro();
         
         System.out.println("\nTestes do método inicializarPecas");
         List<Peca> pecasPretas = jogo.inicializarPecas(false);
-        System.out.println("Teste 8: Peças Pretas:");
+        System.out.println("Teste 9: Peças Pretas:");
         for (Peca peca : pecasPretas) {
             System.out.println(peca.desenho());
         }
